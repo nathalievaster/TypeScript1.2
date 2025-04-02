@@ -1,13 +1,39 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TypeScript - Moment 1.2</title>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kurshantering</h1>
+
+        <form id="courseForm">
+            <label for="code">Kurskod:</label>
+            <input type="text" id="code" required>
+
+            <label for="name">Kursnamn:</label>
+            <input type="text" id="name" required>
+
+            <label for="progression">Progression:</label>
+            <select id="progression" required>
+                <option value="">Välj...</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select>
+
+            <label for="syllabus">Länk till kursplan:</label>
+            <input type="url" id="syllabus" required>
+
+            <button type="submit">Lägg till kurs</button>
+        </form>
+
+        <h2>Kurser</h2>
+        <ul id="courseList"></ul>
+    </div>
+    <script src="main.js"></script>
+</body>
 </html>
