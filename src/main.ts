@@ -45,7 +45,16 @@ function renderCourses(): void {
   courses.forEach(course => {
       const listItem = document.createElement("li");
       listItem.textContent = `${course.code} - ${course.coursename} (${course.progression})`;
-      courseList.appendChild(listItem);
+            // Skapa en länk till kursplanen
+            const syllabusLink = document.createElement("a");
+            syllabusLink.href = course.syllabus;
+            syllabusLink.textContent = "[Kursplan]";
+            syllabusLink.target = "_blank"; // Öppna i ny flik
+      
+            // Lägg till länken i listan
+            listItem.appendChild(syllabusLink);
+      
+            courseList.appendChild(listItem);
   });
 }
 
