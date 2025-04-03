@@ -24,7 +24,10 @@ let courses: CourseInfo[] = [];
 function loadCoursesFromLocalStorage(): void {
   const storedCourses = localStorage.getItem("courses");
   if (storedCourses) {
-    courses = JSON.parse(storedCourses);
+    courses = JSON.parse(storedCourses).map((course: CourseInfo) => ({
+      ...course,
+      code: course.code.toUpperCase(), // Gör kurskoden till versaler
+    }));
     renderCourses();
   }
 }
@@ -51,8 +54,13 @@ async function loadCourses(): Promise<void> {
 
     // Lägg till API-kurser som inte redan finns i localStorage
     apiCourses.forEach((course) => {
-      if (!courses.some((c) => c.code === course.code)) {
-        courses.push(course);
+      const uppercaseCourse: CourseInfo = {
+        ...course,
+        code: course.code.toUpperCase(), // Gör kurskoden till versaler
+      };
+
+      if (!courses.some((c) => c.code === uppercaseCourse.code)) {
+        courses.push(uppercaseCourse);
       }
     });
 
@@ -62,6 +70,7 @@ async function loadCourses(): Promise<void> {
     console.error(error);
   }
 }
+
 
 /**
  * Rendera kurser i listan
@@ -98,8 +107,11 @@ function renderCourses(): void {
 function addCourse(event: Event): void {
   event.preventDefault();
 
+  console.log("Inmatad kurskod:", codeInput.value.trim());
+  console.log("Efter toUpperCase:", codeInput.value.trim().toUpperCase());
+
   const newCourse: CourseInfo = {
-    code: codeInput.value.trim(),
+    code: codeInput.value.trim().toUpperCase(),
     coursename: nameInput.value.trim(),
     progression: progressionInput.value as "A" | "B" | "C",
     syllabus: syllabusInput.value.trim(),
