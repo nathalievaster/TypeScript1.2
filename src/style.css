@@ -68,3 +68,19 @@ ul li {
   margin: 5px 0;
   border-radius: 5px;
 }
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
